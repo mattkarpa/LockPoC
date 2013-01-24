@@ -25,9 +25,8 @@ public class MainActivity extends Activity {
         return true;
     }
     
-    public void switchState(View view) throws IOException,UnknownHostException {
+    public void switchState(View view) {
     	new SendTask().execute(view);
-
     }
     
 	private class SendTask extends AsyncTask<View,Void,Void> {
@@ -46,8 +45,6 @@ public class MainActivity extends Activity {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		   
-	    	
 	    	
 		    if(((Switch) params[0]).isChecked()){
 		    	arduino.println("l");
@@ -57,6 +54,7 @@ public class MainActivity extends Activity {
 		    }
 		    
 	    	arduino.close();
+	    	
 	    	try {
 				arduinoSocket.close();
 			} catch (IOException e) {
